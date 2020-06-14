@@ -21,21 +21,21 @@ def play(word):
    attempted_words = []
 
    # user instructions
-   print("Let's play!")
+   print("Let's play!\n")
    print(display_hangman(tries))
    print(length_hint + "\n")
 
    while not survived and tries > 0:
-      guess = input("Guess a letter or, if you're feeling like taking a risk, the entire word.").upper()
+      guess = input("Guess a letter or, if you're feeling like taking a risk, the entire word: \n").upper()
       if len(guess) == 1 and guess.isalpha():
          if guess in attempted_letters:
-            print("Oops! That letter was already attempted.")
+            print("Oops! That letter was already attempted.\n")
          elif guess not in word:
-            print("PSYCH... not even close, brah.")
+            print("PSYCH... not even close, brah.\n")
             attempted_letters.append(guess)
             tries -= 1
          else:
-            print("Totally in da word!")
+            print("Totally in da word!\n")
             attempted_letters.append(guess)
             length_hint_list = list(length_hint)
             indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -46,22 +46,22 @@ def play(word):
                survived = True
       elif len(guess) == len(word) and guess.isalpha():
          if guess in attempted_words:
-            print("Oops! That word was already attempted.")
+            print("Oops! That word was already attempted.\n")
          elif guess != word:
             tries -= 1
-            print("Not the word...")
+            print("Not the word...\n")
          else:
             survived = True
             length_hint = word
       else:
-         print("Not a valid guess :s")
+         print("Not a valid guess :s\n")
       
       print(display_hangman(tries))
       print(length_hint)
    if survived:
-      print("Congrats you have guessed the word! You win!")
+      print("Congrats you have guessed the word! You win!\n")
    else:
-      print("You have run out of words.  The word was " + word)
+      print("You have run out of words.  The word was " + word + ".\n")
 
 def display_hangman(tries):
     drawings = [  # other leg
@@ -150,7 +150,7 @@ def display_hangman(tries):
 def main():
    word = round()
    play(word)
-   while input('Enter "again" to play again or "quit" to exit').lower() == "again":
+   while input('Enter "again" to play again or "quit" to exit: ').lower() == "again":
       word = round()
       play(word)      
       
