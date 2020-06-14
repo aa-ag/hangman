@@ -120,7 +120,8 @@ def play():
       guess = input("Guess a letter or, if you're feeling like taking a risk, the entire word.").upper()
       if len(guess) == 1 and guess.isalpha():
          if guess in attempted_letters:
-            print(f'Oops! "{guess}"" was already attempted.')
+            tries -= 1
+            print(f'Oops! You have wasted a try... "{guess}" was already attempted. You have {tries} tries left...')
          elif guess not in word:
             print(f'PSYCH... not even close, brah.')
             attempted_letters.append(guess)
@@ -135,7 +136,26 @@ def play():
             length_hint = "".join(length_hint_list)
             if "_" not in length_hint:
                survived = True
-
+      elif len(guess) == len(word) and guess.isalpha():
+         if guess in attempted_words:
+            tries -= 1
+            print(f'Oops! You have wasted a try... "{guess}" was already attempted. You have {tries} tries left...')
+         elif guess != word:
+            tries -= 1
+            print(f'{guess} is not the word... you have {tries} tries left...')
+         else:
+            guessed = True
+            length_hint = word
+      else:
+         print("This is not a valid guess. ")
+      
+      print(display_hangman(tries))
+      print(f'{length_hint} \n')
+   if guessed:
+      print("Congrats you have guessed the word! You win!")
+   else:
+      print(f'You have run out of words.  The word was {word}')
+      
 
 
 
