@@ -84,17 +84,6 @@ def display_hangman(guess):
                    |     
                    -
                 """,
-                # initial empty state
-                """
-                   
-                   |      
-                   |      
-                   |    
-                   |      
-                   |     
-                   -
-                """
-
     ]
     return drawings[guess]
 
