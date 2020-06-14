@@ -2,7 +2,6 @@ import random_word
 from random_word import RandomWords
 r = RandomWords()
 rand_word = r.get_random_word()
-print(rand_word)
 
 def display_hangman(guess):
     drawings = [  # other leg
@@ -85,17 +84,6 @@ def display_hangman(guess):
                    |     
                    -
                 """,
-                # initial empty state
-                """
-                   
-                   |      
-                   |      
-                   |    
-                   |      
-                   |     
-                   -
-                """
-
     ]
     return drawings[guess]
 
@@ -112,7 +100,7 @@ def play():
    attempted_words = []
 
    # user instructions
-   print(f"Let's play! \nYou have {tries} tries left.")
+   print("Let's play!")
    print(display_hangman(guess))
    print(length_hint + "\n")
 
@@ -120,14 +108,13 @@ def play():
       guess = input("Guess a letter or, if you're feeling like taking a risk, the entire word.").upper()
       if len(guess) == 1 and guess.isalpha():
          if guess in attempted_letters:
-            tries -= 1
-            print(f'Oops! You have wasted a try... "{guess}" was already attempted. You have {tries} tries left...')
+            print("Oops! That letter was already attempted.")
          elif guess not in word:
-            print(f'PSYCH... not even close, brah.')
+            print("PSYCH... not even close, brah.")
             attempted_letters.append(guess)
             tries -= 1
          else:
-            print(f'That\'s how it\'s done! "{guess}" is in da word.')
+            print("Totally in da word!")
             attempted_letters.append(guess)
             length_hint_list = list(length_hint)
             indices = [i for i, letter in enumerate(word) if letter == guess]
@@ -138,30 +125,29 @@ def play():
                survived = True
       elif len(guess) == len(word) and guess.isalpha():
          if guess in attempted_words:
-            tries -= 1
-            print(f'Oops! You have wasted a try... "{guess}" was already attempted. You have {tries} tries left...')
+            print("Oops! That word was already attempted.")
          elif guess != word:
             tries -= 1
-            print(f'{guess} is not the word... you have {tries} tries left...')
+            print("Not the word...")
          else:
             guessed = True
             length_hint = word
       else:
-         print("This is not a valid guess. ")
+         print("Not a valid guess :s")
       
       print(display_hangman(tries))
-      print(f'{length_hint} \n')
+      print(length_hint)
    if guessed:
       print("Congrats you have guessed the word! You win!")
    else:
-      print(f'You have run out of words.  The word was {word}')
+      print("You have run out of words.  The word was " + word)
       
+def controls():
+   word = round()
+   play(word)
+   while input('Enter "again" to play again or "quit" to exit').lower() == "again":
+      word = round()
+      play(word)
 
-
-
-
-
-# Instructions
-# Enter 'start' to get started, or 'help' if you need the instructions."
-# MAKE
-
+if __name__ == "__controls__":
+   controls()
