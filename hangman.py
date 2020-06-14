@@ -2,6 +2,7 @@ import random_word
 from random_word import RandomWords
 r = RandomWords()
 rand_word = r.get_random_word()
+print(rand_word)
 
 def display_hangman(guess):
     drawings = [  # other leg
@@ -21,7 +22,7 @@ def display_hangman(guess):
                    |      O
                    |     \|/
                    |      |
-                   |     / 
+                   |     / \\
                    -
                 """,
                 # the other arm
